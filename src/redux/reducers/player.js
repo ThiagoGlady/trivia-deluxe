@@ -17,6 +17,7 @@ const player = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       assertions: state.assertions + 1,
+      score: state.score + action.score,
     };
   default:
     return state;

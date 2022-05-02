@@ -12,6 +12,10 @@ export const storeToken = (token) => (
   { type: 'SAVE_TOKEN', token }
 );
 
+export const newAssertion = (score) => (
+  { type: 'NEW_ASSERTION', score }
+);
+
 export function playerLogin(email, name) {
   return async (dispatch) => {
     try {
