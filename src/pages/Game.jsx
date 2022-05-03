@@ -13,6 +13,12 @@ function Game() {
   const [questions, setQuestions] = useState({});
 
   useEffect(() => {
+    if (!localStorage.ranking) {
+      localStorage.setItem('ranking', '[]');
+    }
+  }, []);
+
+  useEffect(() => {
     const codeForExpiredToken = 3;
     const getQuestions = async () => {
       let gotQuestions = await getQuestionsAPI(token);

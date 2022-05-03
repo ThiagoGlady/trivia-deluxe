@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import Answers from './Answers';
+import getImageGravatarAPI from '../services/getImageGravatarAPI';
 
 function Questions(props) {
   const { questions } = props;
   const defaultBorderStyle = { border: '3px solid white' };
   const initialNumberForCountDown = 30;
   const history = useHistory();
+  const playerInfo = useSelector((store) => store.player);
+  const playerImageSrc = getImageGravatarAPI(playerInfo.gravatarEmail);
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [willButtonShowUp, setWillButtonShowUp] = useState(false);
@@ -26,6 +30,15 @@ function Questions(props) {
       setCount(initialNumberForCountDown);
       setDisableButtons(false);
     } else {
+      const storagePlayerInfo = {
+        name: playerInfo.name,
+        score: playerInfo.score,
+        picture: playerImageSrc,
+      };
+      const ranking = JSON.parse(localStorage.getItem('ranking'));
+      ranking.push(storagePlayerInfo);
+      console.log(ranking);
+      localStorage.setItem('ranking', JSON.stringify(ranking));
       history.push('/feedback');
     }
   };
