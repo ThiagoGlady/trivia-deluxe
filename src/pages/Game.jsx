@@ -33,15 +33,21 @@ function Game() {
   }, [token, dispatch]);
 
   return (
-    <div>
-      <Header />
-      {
-        questions.results && (
-          <Questions
-            questions={ questions.results }
-          />
-        )
-      }
+    <div style={ { backgroundColor: '#290661' } }>
+      <div className="container" style={ { color: 'white' } }>
+        <div className="row justify-content-center align-items-center vh-100">
+          <div className="col-auto">
+            <Header />
+            {
+              questions.results && (
+                <Questions
+                  questions={ questions.results }
+                />
+              )
+            }
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

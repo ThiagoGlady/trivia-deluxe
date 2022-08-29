@@ -47,23 +47,27 @@ function Questions(props) {
     <main>
       <section>
         <h3 data-testid="question-category">{ questions[currentQuestion].category }</h3>
-        <p data-testid="question-text">{ questions[currentQuestion].question }</p>
       </section>
-      <article data-testid="answer-options">
-        <Answers
-          correctAnswer={ questions[currentQuestion].correct_answer }
-          incorrectAnswers={ questions[currentQuestion].incorrect_answers }
-          difficulty={ questions[currentQuestion].difficulty }
-          showButton={ setWillButtonShowUp }
-          showWrongAnswerColor={ setWrongAnswerColor }
-          showRightAnswerColor={ setRightAnswerColor }
-          wrongAnswerColor={ wrongAnswerColor }
-          rightAnswerColor={ rightAnswerColor }
-          count={ count }
-          setCount={ setCount }
-          setDisableButtons={ setDisableButtons }
-          disabledButtons={ disabledButtons }
-        />
+      <article data-testid="answer-options" style={ { color: '#495057' } }>
+        <div className="card">
+          <div className="card-header">
+            <p data-testid="question-text">{ questions[currentQuestion].question }</p>
+          </div>
+          <Answers
+            correctAnswer={ questions[currentQuestion].correct_answer }
+            incorrectAnswers={ questions[currentQuestion].incorrect_answers }
+            difficulty={ questions[currentQuestion].difficulty }
+            showButton={ setWillButtonShowUp }
+            showWrongAnswerColor={ setWrongAnswerColor }
+            showRightAnswerColor={ setRightAnswerColor }
+            wrongAnswerColor={ wrongAnswerColor }
+            rightAnswerColor={ rightAnswerColor }
+            count={ count }
+            setCount={ setCount }
+            setDisableButtons={ setDisableButtons }
+            disabledButtons={ disabledButtons }
+          />
+        </div>
       </article>
       {
         willButtonShowUp && (
@@ -71,6 +75,7 @@ function Questions(props) {
             type="button"
             onClick={ goToNextQuestion }
             data-testid="btn-next"
+            className="mt-3 btn btn-primary"
           >
             Next
           </button>

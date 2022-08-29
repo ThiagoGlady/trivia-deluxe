@@ -74,44 +74,50 @@ function Answers(props) {
   };
 
   return (
-    <>
+    <ul className="list-group list-group-flush">
       {
         shuffledAnswers.map((answer, index) => {
           if (answer === correctAnswerCheck) {
             return (
+              <li className="list-group-item" key={ index }>
+                <button
+                  type="button"
+                  style={ rightAnswerColor }
+                  value="right"
+                  data-testid="correct-answer"
+                  onClick={ checkIfCorrect }
+                  disabled={ disabledButtons }
+                >
+                  { answer }
+                </button>
+              </li>
+            );
+          }
+          incorrectAnswerIndex += 1;
+          return (
+            <li className="list-group-item" key={ index }>
               <button
                 type="button"
-                key={ index }
-                style={ rightAnswerColor }
-                value="right"
-                data-testid="correct-answer"
+                style={ wrongAnswerColor }
+                value="wrong"
+                data-testid={ `wrong-answer-${incorrectAnswerIndex - 1}` }
                 onClick={ checkIfCorrect }
                 disabled={ disabledButtons }
               >
                 { answer }
               </button>
-            );
-          }
-          incorrectAnswerIndex += 1;
-          return (
-            <button
-              type="button"
-              key={ index }
-              style={ wrongAnswerColor }
-              value="wrong"
-              data-testid={ `wrong-answer-${incorrectAnswerIndex - 1}` }
-              onClick={ checkIfCorrect }
-              disabled={ disabledButtons }
-            >
-              { answer }
-            </button>
+            </li>
           );
         })
       }
-      <p>
-        { count }
-      </p>
-    </>
+      <div className="row justify-content-center">
+        <div className="col-auto mt-3">
+          <p>
+            { count }
+          </p>
+        </div>
+      </div>
+    </ul>
   );
 }
 
