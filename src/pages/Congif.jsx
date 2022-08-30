@@ -8,7 +8,7 @@ function Config() {
       <h3
         data-testid="settings-title"
       >
-        Configurações
+        Configuration
       </h3>
     </div>
   );

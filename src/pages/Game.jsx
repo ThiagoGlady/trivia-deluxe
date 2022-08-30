@@ -22,6 +22,7 @@ function Game() {
     const codeForExpiredToken = 3;
     const getQuestions = async () => {
       let gotQuestions = await getQuestionsAPI(token);
+      console.log(gotQuestions);
       if (gotQuestions.response_code === codeForExpiredToken) {
         const newToken = await getTokenTriviaAPI();
         dispatch(storeToken(newToken));
@@ -32,8 +33,10 @@ function Game() {
     getQuestions();
   }, [token, dispatch]);
 
+  useEffect(() => { document.body.style.backgroundColor = '#290661'; }, []);
+
   return (
-    <div style={ { backgroundColor: '#290661' } }>
+    <div>
       <div className="container" style={ { color: 'white' } }>
         <div className="row justify-content-center align-items-center vh-100">
           <div className="col-auto">
